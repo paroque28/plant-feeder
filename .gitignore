@@ -62,3 +62,8 @@ typings/
 
 # expo framework
 .expo
+
+
+#MAC
+.DS_Store
+
