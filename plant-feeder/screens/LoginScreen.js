@@ -9,7 +9,7 @@ import strings from '../config/strings';
 
 class LoginScreen extends React.Component{
     static navigationOptions = {
-        title: 'Bienvenido a su Casa Inteligente'
+        title: 'Welcome to your Smart House'
     };
     
     state = {
@@ -33,7 +33,7 @@ class LoginScreen extends React.Component{
           alert("Login Successful!!");
           this.props.navigation.navigate('Home');
         //} else {
-        // alert('Error: email o contraseña invalidos' );
+        // alert('Error: Invalid Username or Password' );
         //}
       };
 
