@@ -2,7 +2,7 @@ import * as React from 'react';
 import {StyleSheet, TextInput, TextInputProps} from 'react-native';
 import colors from '../config/colors'
 
-class FormTextInput extends React.Component {
+class FormTextnput extends React.Component {
     render(){
         const { style, ...otherProps } = this.props
         return <TextInput
@@ -22,5 +22,3 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
 });
-
-export default FormTextInput;

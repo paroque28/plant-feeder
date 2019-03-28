@@ -2,12 +2,7 @@ import * as React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import colors from '../config/colors'
 
-interface Props {
-    label: string;
-    onPress: () => void;
-}
-
-class Button extends React.Component<Props> {
+class Button extends React.Component {
     render() {
         const {label, onPress} = this.props;
         return(

@@ -2,26 +2,22 @@ import * as React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 import Button from '../components/Button';
 import FormTextInput from '../components/FormTextInput';
-import imageLogo from '../assets/images/logo.png';
+import imageLogo from '../assets/images/icon.png';
 import colors from '../config/colors';
 import strings from '../config/strings';
 
-interface State {
-    email: string;
-    password: string;
-}
 
-class LoginScreen extends React.Component<{}, State>{
-    readonly state: State = {
+class LoginScreen extends React.Component{
+    state = {
         email: "",
-        password: "",
+        password: ""
     };
 
-    handleEmailChange = (email: string) => {
+    handleEmailChange = (email) => {
         this.setState({ email: email})
     };
 
-    handlePasswordChange = (password: string) => {
+    handlePasswordChange = (password) => {
         this.setState({ password: password});
     };
 
@@ -42,7 +38,7 @@ class LoginScreen extends React.Component<{}, State>{
                         value={this.state.password}
                         onChangeText={this.handlePasswordChange}
                         placeholder={strings.PASSWORD_PLACEHOLDER} />
-                    <Button label={strings.LOGIN} onPress={handleLoginPress} />
+                    <Button label={strings.LOGIN} onPress={this.handleLoginPress} />
                 </View>
             </View>
         );
@@ -59,7 +55,8 @@ const styles = StyleSheet.create(
             },
             logo: {
                 flex: 1,
-                width: "100%",
+                width: "45%",
+                height: "45%",
                 resizeMode: "contain",
                 alignSelf: "center",
             },
