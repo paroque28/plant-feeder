@@ -60,6 +60,7 @@ class LoginScreen extends React.Component {
             placeholder={strings.EMAIL_PLACEHOLDER}
           />
           <FormTextInput
+            type="password"
             value={this.state.password}
             onChangeText={this.handlePasswordChange}
             placeholder={strings.PASSWORD_PLACEHOLDER}
