@@ -1,16 +1,8 @@
 import * as React from 'react';
-import {
-  View,
-  StyleSheet,
-  Image,
-  TouchableHighlight,
-  FlatList,
-  Text
-} from 'react-native';
+import { View, StyleSheet, Image, TouchableHighlight, FlatList, Text } from 'react-native';
 import PlantFeederIcon from '../assets/images/plantfeeder.png';
 import SettingIcon from '../assets/images/settings.png';
 import colors from '../config/colors';
-
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -20,8 +12,8 @@ export default class HomeScreen extends React.Component {
       backgroundColor: '#2c3e50',
     },
     headerTitleStyle: {
-      color: 'white'
-    }
+      color: 'white',
+    },
   };
 
   constructor(props) {
@@ -35,16 +27,14 @@ export default class HomeScreen extends React.Component {
         {
           name: 'Settings',
           image: SettingIcon,
-        }
+        },
       ],
-
     };
   }
 
-  _selectScreen = (item) => {
+  _selectScreen = item => {
     this.props.navigation.navigate(item);
-  }
-
+  };
 
   render() {
     return (
@@ -52,18 +42,20 @@ export default class HomeScreen extends React.Component {
         <FlatList
           data={this.state.items}
           renderItem={({ item }) => (
-            <View style={{
-              flex: 1, flexDirection: 'column', margin: 1, alignItems: 'center'
-            }}
-            >
+            <View
+              style={{
+                flex: 1,
+                flexDirection: 'column',
+                margin: 1,
+                alignItems: 'center',
+              }}>
               <TouchableHighlight
-                onPress={() => { this._selectScreen(item.name); }}
-              >
+                onPress={() => {
+                  this._selectScreen(item.name);
+                }}>
                 <Image style={styles.imageThumbnail} source={item.image} />
               </TouchableHighlight>
-              <Text style={styles.paragraph}>
-                {item.name}
-              </Text>
+              <Text style={styles.paragraph}>{item.name}</Text>
             </View>
           )}
           numColumns={2}
@@ -74,13 +66,12 @@ export default class HomeScreen extends React.Component {
   }
 }
 
-
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     flex: 1,
     paddingTop: 30,
-    backgroundColor: colors.WHITE
+    backgroundColor: colors.WHITE,
   },
 
   imageThumbnail: {
@@ -88,6 +79,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     resizeMode: 'stretch',
     height: 150,
-    width: 150
+    width: 150,
   },
 });

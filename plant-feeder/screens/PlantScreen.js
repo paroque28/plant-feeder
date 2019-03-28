@@ -1,15 +1,7 @@
 import * as React from 'react';
-import {
-  View,
-  StyleSheet,
-  Image,
-  TouchableHighlight,
-  FlatList,
-  Text
-} from 'react-native';
+import { View, StyleSheet, Image, TouchableHighlight, FlatList, Text } from 'react-native';
 
 import colors from '../config/colors';
-
 
 export default class PlantScreen extends React.Component {
   static navigationOptions = {
@@ -18,38 +10,30 @@ export default class PlantScreen extends React.Component {
       backgroundColor: colors.WHITE,
     },
     headerTitleStyle: {
-      color: 'green'
-    }
-
+      color: 'green',
+    },
   };
 
   constructor(props) {
     super(props);
-    this.state = {
-
-
-    };
+    this.state = {};
   }
-
 
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.paragraph}>
-                Here is your plant (TODO)
-        </Text>
+        <Text style={styles.paragraph}>Here is your plant (TODO)</Text>
       </View>
     );
   }
 }
-
 
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     flex: 1,
     paddingTop: 30,
-    backgroundColor: colors.WHITE
+    backgroundColor: colors.WHITE,
   },
 
   imageThumbnail: {
@@ -57,6 +41,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     resizeMode: 'stretch',
     height: 150,
-    width: 150
+    width: 150,
   },
 });

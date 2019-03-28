@@ -1,18 +1,10 @@
 import * as React from 'react';
-import {
-  View,
-  StyleSheet,
-  Image,
-  TouchableHighlight,
-  FlatList,
-  Text
-} from 'react-native';
+import { View, StyleSheet, Image, TouchableHighlight, FlatList, Text } from 'react-native';
 import PlantIcon1 from '../assets/images/plant1.png';
 import PlantIcon2 from '../assets/images/plant2.png';
 import NewPlantIcon from '../assets/images/newplant.png';
 import SettingIcon from '../assets/images/settings.png';
 import colors from '../config/colors';
-
 
 export default class PlantFeederScreen extends React.Component {
   static navigationOptions = {
@@ -21,9 +13,8 @@ export default class PlantFeederScreen extends React.Component {
       backgroundColor: colors.WHITE,
     },
     headerTitleStyle: {
-      color: 'green'
-    }
-
+      color: 'green',
+    },
   };
 
   constructor(props) {
@@ -33,31 +24,30 @@ export default class PlantFeederScreen extends React.Component {
         {
           name: 'Plant1 1',
           image: PlantIcon1,
-          screen: 'Plant'
+          screen: 'Plant',
         },
         {
           name: 'Plant 2',
           image: PlantIcon2,
-          screen: 'Plant'
+          screen: 'Plant',
         },
         {
           name: 'Add Plant',
           image: NewPlantIcon,
-          screen: 'AddPlant'
+          screen: 'AddPlant',
         },
         {
           name: 'Settings',
           image: SettingIcon,
-          screen: 'Settings'
-        }
+          screen: 'Settings',
+        },
       ],
-
     };
   }
 
-  _selectScreen = (item) => {
+  _selectScreen = item => {
     this.props.navigation.navigate(item);
-  }
+  };
 
   render() {
     return (
@@ -65,18 +55,20 @@ export default class PlantFeederScreen extends React.Component {
         <FlatList
           data={this.state.items}
           renderItem={({ item }) => (
-            <View style={{
-              flex: 1, flexDirection: 'column', margin: 1, alignItems: 'center'
-            }}
-            >
+            <View
+              style={{
+                flex: 1,
+                flexDirection: 'column',
+                margin: 1,
+                alignItems: 'center',
+              }}>
               <TouchableHighlight
-                onPress={() => { this._selectScreen(item.screen); }}
-              >
+                onPress={() => {
+                  this._selectScreen(item.screen);
+                }}>
                 <Image style={styles.imageThumbnail} source={item.image} />
               </TouchableHighlight>
-              <Text style={styles.paragraph}>
-                {item.name}
-              </Text>
+              <Text style={styles.paragraph}>{item.name}</Text>
             </View>
           )}
           numColumns={2}
@@ -87,13 +79,12 @@ export default class PlantFeederScreen extends React.Component {
   }
 }
 
-
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     flex: 1,
     paddingTop: 30,
-    backgroundColor: colors.WHITE
+    backgroundColor: colors.WHITE,
   },
 
   imageThumbnail: {
@@ -101,6 +92,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     resizeMode: 'stretch',
     height: 150,
-    width: 150
+    width: 150,
   },
 });

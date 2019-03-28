@@ -1,8 +1,4 @@
-import {
-  createStackNavigator,
-  createAppContainer
-} from 'react-navigation';
-
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
@@ -14,28 +10,24 @@ import AddPlantScreen from './screens/AddPlantScreen';
 const RootStack = createStackNavigator({
   Login: {
     screen: LoginScreen,
-
   },
   Home: {
     screen: HomeScreen,
   },
   PlantFeeder: {
-    screen: PlantFeederScreen
+    screen: PlantFeederScreen,
   },
   Settings: {
-    screen: SettingsScreen
+    screen: SettingsScreen,
   },
   Plant: {
-    screen: PlantScreen
+    screen: PlantScreen,
   },
   AddPlant: {
-    screen: AddPlantScreen
-  }
-
-
+    screen: AddPlantScreen,
+  },
 });
 
 const App = createAppContainer(RootStack);
-
 
 export default App;
