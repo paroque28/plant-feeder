@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, View, Text } from 'react-native';
 import Button from '../components/Button';
 import FormTextInput from '../components/FormTextInput';
 import imageLogo from '../assets/images/icon.png';
@@ -31,7 +31,7 @@ class LoginScreen extends React.Component {
      this.state.email === 'Abc' &&
      this.state.password === '123'
     ) {
-    this.props.navigation.navigate('Home');
+      this.props.navigation.navigate('Home');
     } else {
     alert('Error: Invalid Username or Password' );
     this.setState({
