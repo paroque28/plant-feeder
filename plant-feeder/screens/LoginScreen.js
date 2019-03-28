@@ -22,7 +22,8 @@ class LoginScreen extends React.Component{
     };
 
     handleLoginPress = () => {
-        alert("Login!!");
+        alert("Login Successful!!");
+        this.props.navigation.navigate('HomeScreen');
     }
 
     render(){

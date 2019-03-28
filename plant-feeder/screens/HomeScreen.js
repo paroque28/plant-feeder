@@ -6,8 +6,8 @@ import {
   TouchableHighlight,
   FlatList
 } from 'react-native';
-import PlantFeederIcon from '../../assets/images/plantfeeder.png';
-import SettingIcon from '../../assets/images/settings.png';
+import PlantFeederIcon from '../assets/images/plantfeeder.png';
+import SettingIcon from '../assets/images/settings.png';
 import colors from '../config/colors'
 
 
