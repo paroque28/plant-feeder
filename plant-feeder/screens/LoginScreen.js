@@ -14,6 +14,8 @@ class LoginScreen extends React.Component {
   state = {
     email: '',
     password: '',
+    isLoading: false,
+    message: '',
   };
 
   handleEmailChange = email => {
@@ -25,15 +27,18 @@ class LoginScreen extends React.Component {
   };
 
   verifyCredentials = () => {
-    // if (
-    //  this.state.email === 'Abc' &&
-    //  this.state.password === '123'
-    // ) {
-    alert('Login Successful!!');
+    if (
+     this.state.email === 'Abc' &&
+     this.state.password === '123'
+    ) {
     this.props.navigation.navigate('Home');
-    // } else {
-    // alert('Error: Invalid Username or Password' );
-    // }
+    } else {
+    alert('Error: Invalid Username or Password' );
+    this.setState({
+        isLoading: false,
+        message: `Error: Invalid Username or Password`,
+      });
+    }
   };
 
   handleLoginPress = () => {
@@ -41,6 +46,10 @@ class LoginScreen extends React.Component {
   };
 
   render() {
+    const spinner = this.state.isLoading ? (
+      <ActivityIndicator size="large" />
+    ) : null;
+
     return (
       <View style={styles.container}>
         <Image source={imageLogo} style={styles.logo} />
@@ -55,7 +64,9 @@ class LoginScreen extends React.Component {
             onChangeText={this.handlePasswordChange}
             placeholder={strings.PASSWORD_PLACEHOLDER}
           />
+          {spinner}
           <Button label={strings.LOGIN} onPress={this.handleLoginPress} />
+          <Text style={styles.description}>{this.state.message}</Text>
         </View>
       </View>
     );
@@ -80,6 +91,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     width: '80%',
+  },
+  description: {
+    marginBottom: 20,
+    fontSize:  18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#656500'
   },
 });
 
