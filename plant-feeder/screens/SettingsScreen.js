@@ -4,19 +4,19 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import colors from '../config/colors'
+import colors from '../config/colors';
 
 
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
     title: 'Settings',
     headerStyle: {
-        backgroundColor: colors.WHITE,
-      },
-      headerTitleStyle:{
-        color: "white",
-     }
-    
+      backgroundColor: colors.WHITE,
+    },
+    headerTitleStyle: {
+      color: 'white',
+    }
+
   };
 
   constructor(props) {
@@ -24,15 +24,11 @@ export default class SettingsScreen extends React.Component {
     this.state = {
     };
   }
-  
+
 
   render() {
-    
-
     return (
-      <View style={styles.container}>
-            
-       </View>
+      <View style={styles.container} />
     );
   }
 }

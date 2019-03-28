@@ -8,29 +8,28 @@ import {
   Text
 } from 'react-native';
 
-import colors from '../config/colors'
+import colors from '../config/colors';
 
 
 export default class PlantScreen extends React.Component {
   static navigationOptions = {
     title: 'Plant 1',
     headerStyle: {
-        backgroundColor: colors.WHITE,
-      },
-      headerTitleStyle:{
-        color: "green"
-     }
-    
+      backgroundColor: colors.WHITE,
+    },
+    headerTitleStyle: {
+      color: 'green'
+    }
+
   };
 
   constructor(props) {
     super(props);
-    this.state = {   
+    this.state = {
 
-      
+
     };
   }
-  
 
 
   render() {
@@ -43,7 +42,7 @@ export default class PlantScreen extends React.Component {
     );
   }
 }
- 
+
 
 const styles = StyleSheet.create({
   container: {
@@ -56,7 +55,7 @@ const styles = StyleSheet.create({
   imageThumbnail: {
     justifyContent: 'center',
     alignItems: 'center',
-    resizeMode: "stretch",
+    resizeMode: 'stretch',
     height: 150,
     width: 150
   },

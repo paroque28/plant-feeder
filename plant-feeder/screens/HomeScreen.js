@@ -9,8 +9,7 @@ import {
 } from 'react-native';
 import PlantFeederIcon from '../assets/images/plantfeeder.png';
 import SettingIcon from '../assets/images/settings.png';
-import colors from '../config/colors'
-
+import colors from '../config/colors';
 
 
 export default class HomeScreen extends React.Component {
@@ -20,9 +19,9 @@ export default class HomeScreen extends React.Component {
     headerStyle: {
       backgroundColor: '#2c3e50',
     },
-    headerTitleStyle:{
-      color: "white"
-   }
+    headerTitleStyle: {
+      color: 'white'
+    }
   };
 
   constructor(props) {
@@ -30,24 +29,22 @@ export default class HomeScreen extends React.Component {
     this.state = {
       items: [
         {
-          name: "PlantFeeder",
+          name: 'PlantFeeder',
           image: PlantFeederIcon,
         },
         {
-          name: "Settings",
+          name: 'Settings',
           image: SettingIcon,
         }
       ],
-      
+
     };
   }
 
   _selectScreen = (item) => {
     this.props.navigation.navigate(item);
   }
-  
-    
-  
+
 
   render() {
     return (
@@ -55,10 +52,14 @@ export default class HomeScreen extends React.Component {
         <FlatList
           data={this.state.items}
           renderItem={({ item }) => (
-            <View style={{ flex: 1, flexDirection: 'column', margin: 1, alignItems: 'center' }}>
-              <TouchableHighlight  
-                      onPress={() => { this._selectScreen(item.name); }}>
-                      <Image style={styles.imageThumbnail} source={ item.image } />
+            <View style={{
+              flex: 1, flexDirection: 'column', margin: 1, alignItems: 'center'
+            }}
+            >
+              <TouchableHighlight
+                onPress={() => { this._selectScreen(item.name); }}
+              >
+                <Image style={styles.imageThumbnail} source={item.image} />
               </TouchableHighlight>
               <Text style={styles.paragraph}>
                 {item.name}
@@ -72,7 +73,7 @@ export default class HomeScreen extends React.Component {
     );
   }
 }
- 
+
 
 const styles = StyleSheet.create({
   container: {
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
   imageThumbnail: {
     justifyContent: 'center',
     alignItems: 'center',
-    resizeMode: "stretch",
+    resizeMode: 'stretch',
     height: 150,
     width: 150
   },
