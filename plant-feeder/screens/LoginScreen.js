@@ -33,7 +33,6 @@ class LoginScreen extends React.Component {
     ) {
       this.props.navigation.navigate('Home');
     } else {
-    alert('Error: Invalid Username or Password' );
     this.setState({
         isLoading: false,
         message: `Error: Invalid Username or Password`,
