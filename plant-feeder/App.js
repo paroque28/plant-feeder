@@ -17,7 +17,7 @@ const RootStack = createStackNavigator({
   Home: {
     screen: HomeScreen,
   },
-  Pets: {
+  PlantFeeder: {
     screen: PlantFeederScreen
   },
   Settings: {

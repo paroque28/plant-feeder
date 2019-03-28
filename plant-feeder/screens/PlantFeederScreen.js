@@ -11,7 +11,7 @@ import colors from '../config/colors'
 
 export default class PlantFeederScreen extends React.Component {
   static navigationOptions = {
-    title: 'PlantFeeder',
+    title: 'Plant Feeder',
     headerStyle: {
         backgroundColor: colors.WHITE,
       },

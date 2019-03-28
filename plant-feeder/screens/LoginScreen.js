@@ -8,6 +8,10 @@ import strings from '../config/strings';
 
 
 class LoginScreen extends React.Component{
+    static navigationOptions = {
+        title: 'Bienvenido a su Casa Inteligente'
+    };
+    
     state = {
         email: "",
         password: ""
@@ -21,9 +25,20 @@ class LoginScreen extends React.Component{
         this.setState({ password: password});
     };
 
+    verifyCredentials = () => {
+        //if (
+        //  this.state.email === 'Abc' &&
+        //  this.state.password === '123'
+        //) {
+          alert("Login Successful!!");
+          this.props.navigation.navigate('Home');
+        //} else {
+        // alert('Error: email o contraseña invalidos' );
+        //}
+      };
+
     handleLoginPress = () => {
-        alert("Login Successful!!");
-        this.props.navigation.navigate('HomeScreen');
+        this.verifyCredentials();
     }
 
     render(){

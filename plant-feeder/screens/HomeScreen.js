@@ -4,7 +4,8 @@ import {
   StyleSheet,
   Image,
   TouchableHighlight,
-  FlatList
+  FlatList,
+  Text
 } from 'react-native';
 import PlantFeederIcon from '../assets/images/plantfeeder.png';
 import SettingIcon from '../assets/images/settings.png';
@@ -29,12 +30,12 @@ export default class HomeScreen extends React.Component {
     this.state = {
       items: [
         {
-          name: "Settings",
-          image: SettingIcon,
-        },
-        {
           name: "PlantFeeder",
           image: PlantFeederIcon,
+        },
+        {
+          name: "Settings",
+          image: SettingIcon,
         }
       ],
       
@@ -59,6 +60,9 @@ export default class HomeScreen extends React.Component {
                       onPress={() => { this._selectScreen(item.name); }}>
                       <Image style={styles.imageThumbnail} source={ item.image } />
               </TouchableHighlight>
+              <Text style={styles.paragraph}>
+                {item.name}
+              </Text>
             </View>
           )}
           numColumns={2}
