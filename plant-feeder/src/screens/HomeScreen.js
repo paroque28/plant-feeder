@@ -1,19 +1,18 @@
 import * as React from 'react';
 import { View, StyleSheet, Image, TouchableHighlight, FlatList, Text } from 'react-native';
-import PlantIcon1 from '../assets/images/plant1.png';
-import PlantIcon2 from '../assets/images/plant2.png';
-import NewPlantIcon from '../assets/images/newplant.png';
-import SettingIcon from '../assets/images/settings.png';
-import colors from '../config/colors';
+import PlantFeederIcon from '../../assets/images/plantfeeder.png';
+import SettingIcon from '../../assets/images/settings.png';
+import colors from '../../config/colors';
 
-export default class PlantFeederScreen extends React.Component {
+export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    title: 'Plant Feeder',
+    title: 'Smart House',
+    headerLeft: null,
     headerStyle: {
-      backgroundColor: colors.WHITE,
+      backgroundColor: '#2c3e50',
     },
     headerTitleStyle: {
-      color: 'green',
+      color: 'white',
     },
   };
 
@@ -22,24 +21,12 @@ export default class PlantFeederScreen extends React.Component {
     this.state = {
       items: [
         {
-          name: 'Plant1 1',
-          image: PlantIcon1,
-          screen: 'Plant',
-        },
-        {
-          name: 'Plant 2',
-          image: PlantIcon2,
-          screen: 'Plant',
-        },
-        {
-          name: 'Add Plant',
-          image: NewPlantIcon,
-          screen: 'AddPlant',
+          name: 'PlantFeeder',
+          image: PlantFeederIcon,
         },
         {
           name: 'Settings',
           image: SettingIcon,
-          screen: 'Settings',
         },
       ],
     };
@@ -64,7 +51,7 @@ export default class PlantFeederScreen extends React.Component {
               }}>
               <TouchableHighlight
                 onPress={() => {
-                  this._selectScreen(item.screen);
+                  this._selectScreen(item.name);
                 }}>
                 <Image style={styles.imageThumbnail} source={item.image} />
               </TouchableHighlight>

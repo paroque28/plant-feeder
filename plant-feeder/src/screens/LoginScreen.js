@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Image, StyleSheet, View, Text } from 'react-native';
-import Button from '../components/Button';
-import FormTextInput from '../components/FormTextInput';
-import imageLogo from '../assets/images/icon.png';
-import colors from '../config/colors';
-import strings from '../config/strings';
+import Button from '../../components/Button';
+import FormTextInput from '../../components/FormTextInput';
+import imageLogo from '../../assets/images/icon.png';
+import colors from '../../config/colors';
+import strings from '../../config/strings';
 
 class LoginScreen extends React.Component {
   static navigationOptions = {
@@ -26,18 +26,33 @@ class LoginScreen extends React.Component {
     this.setState({ password });
   };
 
-  verifyCredentials = () => {
-    if (
-     this.state.email === 'Abc' &&
-     this.state.password === '123'
-    ) {
-      this.props.navigation.navigate('Home');
-    } else {
-    this.setState({
-        isLoading: false,
-        message: `Error: Invalid Username or Password`,
-      });
-    }
+  verifyCredentials = async () => {
+    let obj = { username: this.state.email, password: this.state.password };   
+    fetch('http://192.168.0.13:80/api/v1/login', {
+      method: 'POST',
+      body: JSON.stringify(obj),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: "same-origin"
+    })
+      .then((response) =>  {
+        if (response.ok){
+          this.props.navigation.navigate('Home');
+        }else{
+          this.setState({
+            isLoading: false,
+            message: 'Error: Invalid Username or Password',
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        this.setState({
+          isLoading: false,
+          message: 'Error: Invalid Username or Password'
+        });
+      });  
   };
 
   handleLoginPress = () => {

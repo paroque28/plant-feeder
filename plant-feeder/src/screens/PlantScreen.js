@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View, StyleSheet, Image, TouchableHighlight, FlatList, Text } from 'react-native';
 
-import colors from '../config/colors';
+import colors from '../../config/colors';
 
 export default class PlantScreen extends React.Component {
   static navigationOptions = {
