@@ -19,15 +19,17 @@ const RootStack = createStackNavigator({
       PlantFeeder: {
         screen: PlantFeederScreen,
       },
-      Settings: {
-        screen: SettingsScreen,
+      AddPlant: {
+        screen: AddPlantScreen,
       },
       Plant: {
         screen: PlantScreen,
       },
-      AddPlant: {
-        screen: AddPlantScreen,
-      },
+      Settings: {
+        screen: SettingsScreen,
+      }
+
+
     })
   },
   Settings: {
