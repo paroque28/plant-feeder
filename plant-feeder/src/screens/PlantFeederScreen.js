@@ -23,53 +23,28 @@ export default class PlantFeederScreen extends React.Component {
     super(props)
     this.state = {
       // dev data of plants to be showed. Will be fetched form server.
-      refresh:false,
+      refresh: false,
       items: [
-        {
-          name: 'Espatifilo1',
-          imageURL: PlantIcon2,
-          minHumidity: '10',
-          humidity: '20',
-          luminosity: '200',
-          humiditySensorId: 'a',
-          luminositySensorId: 'l',
-          pumpId: '1', 
-        },
-        {
-          name: 'Menta',
-          imageURL: PlantIcon1,
-          minHumidity: '10',
-          humidity: '30',
-          luminosity: '200',
-          humiditySensorId: 'b',
-          luminositySensorId: 'l',
-          pumpId: '2', 
-        },
-        {
-          name: 'Eucalipto',
-          imageURL: PlantIcon2,
-          minHumidity: '20',
-          humidity: '40',
-          luminosity: '200',
-          humiditySensorId: 'c',
-          luminositySensorId: 'l',
-          pumpId: '3', 
-        }
       ],
     }
   }
 
-  _onWaterButtonPressed = async (item) => { 
-    fetch(`http://192.168.0.13:80/api/v1/waterpump?id=${item.pumpId}`, {
+  componentDidMount() {
+    this.requestPotList();
+  }
+
+  onWaterButtonPressed = async (item) => { 
+    fetch(`http://192.168.0.13:80/api/v1/water-pot?name=${item.name}`, {
       method: 'POST',
     })
       .then((response) =>  {
+        console.log(response);
         if (response.ok) {
           console.log(response);
-          alert(`You have watered plant ${  response._bodyInit}`);
+          alert(` ${  response._bodyInit}`);
         }
         else{
-            alert("Error, not Watered");
+            alert('Error, not Watered');
         }
       })
       .catch((error) => {
@@ -77,28 +52,25 @@ export default class PlantFeederScreen extends React.Component {
       });  
   };
 
-  _requestPotList= async () => { 
-    //fetch('http://192.168.0.13:80/api/v1/wapi/v1/pot', {
-    fetch(`http://192.168.0.13:80/api/v1/waterpump?id=0`, {  
-      method: 'GET',
-    })
-      .then(response => response.json())
-      .then((response) =>  {
-        this.setState({items: response.pots})
-      })
-      .catch((error) => {
-        alert(error);
-      });  
-  };
-
-  _onUpdateDataButtonPressed ()) { 
-    this._requestPotList();
+  onUpdateDataButtonPressed() { 
+    this.requestPotList();
     this.setState({ refresh: !this.state.refresh });
   };
   
-  componentDidMount() {
-    this._requestPotList();
-  }
+  requestPotList= async () => { 
+    fetch('http://192.168.0.13:80/api/v1/pot', {
+ 
+       method: 'GET',
+     })
+       .then(response => response.json())
+       .then((response) =>  {
+         console.log(response)
+         this.setState({items: response})
+       })
+       .catch((error) => {
+         alert(error);
+       });  
+   };
 
   render() {
     return (
@@ -120,7 +92,7 @@ export default class PlantFeederScreen extends React.Component {
                 <Button 
                   style = { {marginHorizontal: 30} }
                   onPress={() => {
-                    this._onWaterButtonPressed(item);
+                    this.onWaterButtonPressed(item);
                   }}
                   title='Water now'
                   color= {colors.DODGER_BLUE}     
@@ -128,7 +100,7 @@ export default class PlantFeederScreen extends React.Component {
                 <Button 
                   style = { {marginHorizontal: 30} }
                   onPress={() => {
-                    this._onUpdateDataButtonPressed();
+                    this.onUpdateDataButtonPressed();
                   }}
                   title='Update Data Now'
                   color= {colors.DODGER_BLUE}     

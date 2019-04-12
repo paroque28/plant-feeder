@@ -4,7 +4,7 @@ import LoginScreen from './src/screens/LoginScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import PlantFeederScreen from './src/screens/PlantFeederScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
-import PlantScreen from './src/screens/PlantScreen';
+import StatsScreen from './src/screens/StatsScreen';
 import AddPlantScreen from './src/screens/AddPlantScreen';
 
 const RootStack = createStackNavigator({
@@ -22,8 +22,8 @@ const RootStack = createStackNavigator({
       AddPlant: {
         screen: AddPlantScreen,
       },
-      Plant: {
-        screen: PlantScreen,
+      Stats: {
+        screen: StatsScreen,
       },
       Settings: {
         screen: SettingsScreen,

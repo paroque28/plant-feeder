@@ -3,9 +3,9 @@ import { View, StyleSheet, Image, TouchableHighlight, FlatList, Text } from 'rea
 
 import colors from '../../config/colors';
 
-export default class PlantScreen extends React.Component {
+export default class StatsScreen extends React.Component {
   static navigationOptions = {
-    title: 'Plant 1',
+    title: 'Stats',
     headerStyle: {
       backgroundColor: colors.WHITE,
     },
