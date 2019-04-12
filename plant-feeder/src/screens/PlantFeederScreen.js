@@ -23,37 +23,44 @@ export default class PlantFeederScreen extends React.Component {
     super(props)
     this.state = {
       // dev data of plants to be showed. Will be fetched form server.
+      refresh:false,
       items: [
         {
-          id:0,
-          id2:'a',
-          name: 'Espatifilo',
-          image: PlantIcon1,
-          humidity: '20%',
-          luminosity: '200lux'
+          name: 'Espatifilo1',
+          imageURL: PlantIcon2,
+          minHumidity: '10',
+          humidity: '20',
+          luminosity: '200',
+          humiditySensorId: 'a',
+          luminositySensorId: 'l',
+          pumpId: '1', 
         },
         {
-          id:1,
-          id2:'b',
-          name: 'Ciclamen',
-          image: PlantIcon2,
-          humidity: '22%',
-          luminosity: '200lux'
+          name: 'Menta',
+          imageURL: PlantIcon1,
+          minHumidity: '10',
+          humidity: '30',
+          luminosity: '200',
+          humiditySensorId: 'b',
+          luminositySensorId: 'l',
+          pumpId: '2', 
         },
         {
-          id:2,
-          id2:'c',
-          name: ' Adiantum',
-          image: PlantIcon1,
-          humidity: '25%',
-          luminosity: '200lux'
-        },
+          name: 'Eucalipto',
+          imageURL: PlantIcon2,
+          minHumidity: '20',
+          humidity: '40',
+          luminosity: '200',
+          humiditySensorId: 'c',
+          luminositySensorId: 'l',
+          pumpId: '3', 
+        }
       ],
     }
   }
 
   _onWaterButtonPressed = async (item) => { 
-    fetch(`http://192.168.0.13:80/api/v1/waterpump?id=${item.id}`, {
+    fetch(`http://192.168.0.13:80/api/v1/waterpump?id=${item.pumpId}`, {
       method: 'POST',
     })
       .then((response) =>  {
@@ -70,57 +77,39 @@ export default class PlantFeederScreen extends React.Component {
       });  
   };
 
-  _getHumidity = async (item) => { 
-    fetch(`http://192.168.0.13:80/api/v1/humidity?id=${item.id2}`, {
+  _requestPotList= async () => { 
+    //fetch('http://192.168.0.13:80/api/v1/wapi/v1/pot', {
+    fetch(`http://192.168.0.13:80/api/v1/waterpump?id=0`, {  
       method: 'GET',
     })
+      .then(response => response.json())
       .then((response) =>  {
-        if (response.ok) {
-          console.log(response);
-          alert(`Success, ${response._bodyInit} `);
-          return response._bodyInit;
-        }
-
-            alert("Error");
-            return 20;
-
+        this.setState({items: response.pots})
       })
       .catch((error) => {
         alert(error);
       });  
   };
 
-  _onUpdateDataButtonPressed = async (item) => { 
-    fetch(`http://192.168.0.13:80/api/v1/waterpump?id=${item.id}`, {
-      method: 'POST',
-    })
-      .then((response) =>  {
-        if (response.ok) {
-          console.log(response);
-          alert(`You have watered plant ${  response._bodyInit}`);
-        }
-        else{
-            alert("Error, not Watered");
-        }
-      })
-      .catch((error) => {
-        alert(error);
-      });  
+  _onUpdateDataButtonPressed ()) { 
+    this._requestPotList();
+    this.setState({ refresh: !this.state.refresh });
   };
-
-  _selectScreen = (item) => {
-    this.props.navigation.navigate(item)
-  };
+  
+  componentDidMount() {
+    this._requestPotList();
+  }
 
   render() {
     return (
       <View style={styles.container}>
         <FlatList
           data={this.state.items}
+          extraData={this.state.refresh}
           renderItem={({ item }) => (
             <View>
               <View style={styles.descriptionInfo}> 
-                <Image style={styles.imageThumbnail} source={item.image} />
+                <Image style={styles.imageThumbnail} source={item.imageURL} />
                 <Text style={styles.paragraph}>{item.name}</Text>
               </View>
               <View style={styles.statusInfo}>
@@ -139,7 +128,7 @@ export default class PlantFeederScreen extends React.Component {
                 <Button 
                   style = { {marginHorizontal: 30} }
                   onPress={() => {
-                    this._getHumidity(item);
+                    this._onUpdateDataButtonPressed();
                   }}
                   title='Update Data Now'
                   color= {colors.DODGER_BLUE}     
