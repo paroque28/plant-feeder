@@ -2,10 +2,6 @@ import * as React from 'react'
 import {
  View, StyleSheet, Image, Button, FlatList, Text 
 } from 'react-native'
-import PlantIcon1 from '../../assets/images/plant1.png'
-import PlantIcon2 from '../../assets/images/plant2.png'
-import NewPlantIcon from '../../assets/images/newplant.png'
-import SettingIcon from '../../assets/images/settings.png'
 import colors from '../../config/colors'
 
 export default class PlantFeederScreen extends React.Component {
@@ -22,7 +18,6 @@ export default class PlantFeederScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      // dev data of plants to be showed. Will be fetched form server.
       refresh: false,
       items: [
       ],
@@ -38,9 +33,7 @@ export default class PlantFeederScreen extends React.Component {
       method: 'POST',
     })
       .then((response) =>  {
-        console.log(response);
         if (response.ok) {
-          console.log(response);
           alert(` ${  response._bodyInit}`);
         }
         else{
@@ -81,7 +74,7 @@ export default class PlantFeederScreen extends React.Component {
           renderItem={({ item }) => (
             <View>
               <View style={styles.descriptionInfo}> 
-                <Image style={styles.imageThumbnail} source={item.imageURL} />
+                <Image style={styles.imageThumbnail} source={{uri: item.plant.imageURL}} />
                 <Text style={styles.paragraph}>{item.name}</Text>
               </View>
               <View style={styles.statusInfo}>
@@ -90,20 +83,20 @@ export default class PlantFeederScreen extends React.Component {
               </View>
               <View style={styles.buttonLayout}>
                 <Button 
-                  style = { {marginHorizontal: 30} }
+                  style={{padding: 12, margin: 16 }}
                   onPress={() => {
                     this.onWaterButtonPressed(item);
                   }}
-                  title='Water now'
-                  color= {colors.DODGER_BLUE}     
+                  title="Water now"
+                  color={colors.DODGER_BLUE}     
                 />
                 <Button 
-                  style = { {marginHorizontal: 30} }
+                  style= {{padding: 12, margin: 16 }}
                   onPress={() => {
                     this.onUpdateDataButtonPressed();
                   }}
-                  title='Update Data Now'
-                  color= {colors.DODGER_BLUE}     
+                  title="Update Data Now"
+                  color={colors.DODGER_BLUE}     
                 />
               </View>
               
@@ -146,7 +139,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    margin: '5%',
+    padding: 12,
+    margin: 16,
 
   },
 
@@ -154,7 +148,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: '2%'
+    padding: 12,
+    margin: 16,
 
   },
 
@@ -162,7 +157,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    flex:1
+    flex:1,
+    padding: 12,
+    margin: 16,
 
   },
 
