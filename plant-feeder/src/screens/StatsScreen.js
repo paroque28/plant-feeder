@@ -80,6 +80,10 @@ export default class StatsScreen extends React.Component {
       })
   };
 
+  componentDidMount() {
+    this.requestPotNames()
+  }
+
   render() {
     const serviceItems = this.state.potNames.map( (s, i) => {
       return <Picker.Item key={i} value={s} label={s} />
