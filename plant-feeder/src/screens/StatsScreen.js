@@ -81,12 +81,12 @@ export default class StatsScreen extends React.Component {
   };
 
   render() {
-    let serviceItems = this.state.potNames.map( (s, i) => {
+    const serviceItems = this.state.potNames.map( (s, i) => {
       return <Picker.Item key={i} value={s} label={s} />
   });
     return (
       <View style={styles.container}>
-        <Text> Humidity </Text>
+        <Text style={styles.label}> Humidity </Text>
         <LineChart
           data={{
             labels: ['-10h', '-9h', '-8h', '-7h', '-6h', '-5h', '-4h', '-3h', '-2h', '-1h'],
@@ -114,7 +114,7 @@ export default class StatsScreen extends React.Component {
           }}
         />
 
-        <Text> Luminosity </Text>
+        <Text style={styles.label}> Luminosity </Text>
         <LineChart
           data={{
             labels: ['-10h', '-9h', '-8h', '-7h', '-6h', '-5h', '-4h', '-3h', '-2h', '-1h'],
@@ -146,13 +146,13 @@ export default class StatsScreen extends React.Component {
           <Text style={styles.label}>Pot Name: </Text>
           <Picker
             selectedValue={this.state.potName}
+            style={{height: 50, width: 200}}
             onValueChange={(potName) => {
                        this.setState({ potName })
                       }}
           >
             {serviceItems}
           </Picker>
-
 
           <Button
             style={{ padding: 12, margin: 16 }}
