@@ -1,6 +1,10 @@
 import * as React from 'react'
 import {
- Image, StyleSheet, View, Text,
+  Image,
+  KeyboardAvoidingView,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native'
 import Button from '../../components/Button'
 import FormTextInput from '../../components/FormTextInput'
@@ -66,7 +70,7 @@ class LoginScreen extends React.Component {
     ) : null
 
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding">
         <Image source={imageLogo} style={styles.logo} />
         <View style={styles.form}>
           <FormTextInput
@@ -84,7 +88,7 @@ class LoginScreen extends React.Component {
           <Button label={strings.LOGIN} onPress={this.handleLoginPress} />
           <Text style={styles.description}>{this.state.message}</Text>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }
