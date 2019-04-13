@@ -45,7 +45,6 @@ export default class AddPlantScreen extends React.Component {
                   luminositySensor: this.state.selectedPlant.luminositySensor,
                   motorSensor: this.state.selectedPlant.motorSensor, 
                 } 
-    console.log(JSON.stringify(obj))
     fetch(`${strings.LOCALAPI}/pot`, {
       method: 'POST',
       headers: {
@@ -60,7 +59,6 @@ export default class AddPlantScreen extends React.Component {
           this.setState({ isVisibleModal: false });
           alert('Added successfully');
         } else {
-          console.log(response)
           alert('Failed to add pot')
         }
       })

@@ -49,7 +49,6 @@ class LoginScreen extends React.Component {
         }
       })
       .catch((error) => {
-        console.log(error)
         this.setState({
           isLoading: false,
           message: 'Error: Invalid Username or Password',
