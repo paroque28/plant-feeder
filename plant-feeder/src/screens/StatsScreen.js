@@ -24,7 +24,6 @@ export default class StatsScreen extends React.Component {
       dataLuminosity: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       dataHumidity: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       potName: '',
-      dataType: '',
     }
   }
 

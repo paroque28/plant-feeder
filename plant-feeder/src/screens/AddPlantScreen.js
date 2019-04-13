@@ -1,6 +1,15 @@
 import * as React from 'react'
 import {
-Button, Image, FlatList, TextInput, StyleSheet, Text, TouchableHighlight, View, Modal, TouchableOpacity,
+  Button,
+  Image,
+  FlatList,
+  TextInput,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  View,
+  Modal,
+  TouchableOpacity,
 } from 'react-native'
 import colors from '../../config/colors'
 import strings from '../../config/strings'
