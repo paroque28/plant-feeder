@@ -30,6 +30,7 @@ function createUserRoutes(server) {
           (resolve, reject) => {
           User.findOne({ username }, 'md5Password', (err, user) => {
             if (err) throw Boom.badRequest(err)
+            if (user == null) throw Boom.badRequest('Invalid username or password')
             if (user.md5Password === hash) {
               resolve('Authorized')
             } else {
