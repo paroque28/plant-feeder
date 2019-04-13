@@ -26,6 +26,17 @@ export default class StatsScreen extends React.Component {
       potName: '',
       potNames: [],
     }
+    // Fetch Pot Names
+    fetch(`${strings.LOCALAPI}/potname`, {
+      method: 'GET',
+    })
+      .then(response => response.json())
+      .then((response) => {
+        this.state.potNames = response
+      })
+      .catch((error) => {
+        alert(error)
+      })
   }
 
   requestHistoryDataHumidity = async () => {
@@ -71,7 +82,6 @@ export default class StatsScreen extends React.Component {
   };
 
   render() {
-    this.requestPotNames()
     return (
       <View style={styles.container}>
         <Text> Humidity </Text>
