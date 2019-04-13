@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import {
- Button, Dimensions, StyleSheet, TextInput, Text, View,
+ Button, Dimensions, StyleSheet, Picker, Text, View,
 } from 'react-native'
 import { LineChart } from 'react-native-chart-kit'
 import colors from '../../config/colors'
