@@ -4,6 +4,8 @@ Plant feeder app developed on React-Native
 
 ```bash
 npm install expo-cli --global
+npm install -g yarn
+yarn add react-native-chart-kit
 npm install
 ```
 
