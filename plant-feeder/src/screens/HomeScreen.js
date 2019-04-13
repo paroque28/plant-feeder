@@ -1,8 +1,10 @@
-import * as React from 'react';
-import { View, StyleSheet, Image, TouchableHighlight, FlatList, Text } from 'react-native';
-import PlantFeederIcon from '../../assets/images/plantfeeder.png';
-import SettingIcon from '../../assets/images/settings.png';
-import colors from '../../config/colors';
+import * as React from 'react'
+import {
+ View, StyleSheet, Image, TouchableHighlight, FlatList, Text,
+} from 'react-native'
+import PlantFeederIcon from '../../assets/images/plantfeeder.png'
+import SettingIcon from '../../assets/images/settings.png'
+import colors from '../../config/colors'
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -17,7 +19,7 @@ export default class HomeScreen extends React.Component {
   };
 
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       items: [
         {
@@ -29,11 +31,11 @@ export default class HomeScreen extends React.Component {
           image: SettingIcon,
         },
       ],
-    };
+    }
   }
 
-  _selectScreen = item => {
-    this.props.navigation.navigate(item);
+  _selectScreen = (item) => {
+    this.props.navigation.navigate(item)
   };
 
   render() {
@@ -48,11 +50,13 @@ export default class HomeScreen extends React.Component {
                 flexDirection: 'column',
                 margin: 1,
                 alignItems: 'center',
-              }}>
+              }}
+            >
               <TouchableHighlight
                 onPress={() => {
-                  this._selectScreen(item.name);
-                }}>
+                  this._selectScreen(item.name)
+                }}
+              >
                 <Image style={styles.imageThumbnail} source={item.image} />
               </TouchableHighlight>
               <Text style={styles.paragraph}>{item.name}</Text>
@@ -62,7 +66,7 @@ export default class HomeScreen extends React.Component {
           keyExtractor={(item, index) => index}
         />
       </View>
-    );
+    )
   }
 }
 
@@ -80,4 +84,4 @@ const styles = StyleSheet.create({
     height: 150,
     width: 150,
   },
-});
+})

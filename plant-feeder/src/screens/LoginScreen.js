@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {
- Image, StyleSheet, View, Text 
+ Image, StyleSheet, View, Text,
 } from 'react-native'
 import Button from '../../components/Button'
 import FormTextInput from '../../components/FormTextInput'
@@ -29,7 +29,7 @@ class LoginScreen extends React.Component {
   };
 
   verifyCredentials = async () => {
-    const obj = { username: this.state.email, password: this.state.password }   
+    const obj = { username: this.state.email, password: this.state.password }
     fetch(`${strings.LOCALAPI}/login`, {
       method: 'POST',
       body: JSON.stringify(obj),
@@ -53,7 +53,7 @@ class LoginScreen extends React.Component {
           isLoading: false,
           message: 'Error: Invalid Username or Password',
         })
-      })  
+      })
   };
 
   handleLoginPress = () => {

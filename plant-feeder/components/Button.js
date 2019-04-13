@@ -1,15 +1,15 @@
-import * as React from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-import colors from '../config/colors';
+import * as React from 'react'
+import { StyleSheet, Text, TouchableOpacity } from 'react-native'
+import colors from '../config/colors'
 
 class Button extends React.Component {
   render() {
-    const { label, onPress } = this.props;
+    const { label, onPress } = this.props
     return (
       <TouchableOpacity style={styles.container} onPress={onPress}>
         <Text style={styles.text}>{label}</Text>
       </TouchableOpacity>
-    );
+    )
   }
 }
 
@@ -30,6 +30,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     height: 20,
   },
-});
+})
 
-export default Button;
+export default Button

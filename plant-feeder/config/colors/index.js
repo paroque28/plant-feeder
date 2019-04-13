@@ -6,7 +6,7 @@ const colors = {
   TORCH_RED: '#F8262F',
   MISCHKA: '#E5E4E6',
   GREEN1: '#295B16',
-  GREEN2: '#419B28'
-};
+  GREEN2: '#419B28',
+}
 
-export default colors;
+export default colors

@@ -1,6 +1,8 @@
-import * as React from 'react';
-import {Button, Image, FlatList, TextInput, StyleSheet, Text, TouchableHighlight, View, Modal, TouchableOpacity } from 'react-native';
-import colors from '../../config/colors';
+import * as React from 'react'
+import {
+Button, Image, FlatList, TextInput, StyleSheet, Text, TouchableHighlight, View, Modal, TouchableOpacity,
+} from 'react-native'
+import colors from '../../config/colors'
 import strings from '../../config/strings'
 
 export default class AddPlantScreen extends React.Component {
@@ -15,7 +17,7 @@ export default class AddPlantScreen extends React.Component {
   };
 
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       isVisibleModal: false,
       items: [],
@@ -25,26 +27,26 @@ export default class AddPlantScreen extends React.Component {
         minHumidity: '',
         imageURL: '',
         potName: '',
-        humditySensor:'',
-        luminositySensor:'',
-        motorSensor:'',
-      }
-    };
+        humditySensor: '',
+        luminositySensor: '',
+        motorSensor: '',
+      },
+    }
   }
 
   componentDidMount() {
-    this.requestPlantList();
+    this.requestPlantList()
   }
 
 
-
   onAddPlantPressed = async () => {
-    const obj = { name: this.state.selectedPlant.potName,
+    const obj = {
+ name: this.state.selectedPlant.potName,
                   plantName: this.state.selectedPlant.name,
                   humiditySensor: this.state.selectedPlant.humditySensor,
                   luminositySensor: this.state.selectedPlant.luminositySensor,
-                  motorSensor: this.state.selectedPlant.motorSensor, 
-                } 
+                  motorSensor: this.state.selectedPlant.motorSensor,
+                }
     fetch(`${strings.LOCALAPI}/pot`, {
       method: 'POST',
       headers: {
@@ -56,15 +58,15 @@ export default class AddPlantScreen extends React.Component {
     })
       .then((response) => {
         if (response.ok) {
-          this.setState({ isVisibleModal: false });
-          alert('Added successfully');
+          this.setState({ isVisibleModal: false })
+          alert('Added successfully')
         } else {
           alert('Failed to add pot')
         }
       })
       .catch((error) => {
         console.log(error)
-      })  
+      })
   };
 
   onCancelPressed() {
@@ -75,11 +77,11 @@ export default class AddPlantScreen extends React.Component {
         imageURL: this.state.selectedPlant.imageURL,
         minHumidity: this.state.selectedPlant.minHumidity,
         potName: '',
-        humditySensor:'',
-        luminositySensor:'',
-        motorSensor:'',
+        humditySensor: '',
+        luminositySensor: '',
+        motorSensor: '',
       },
-    }); 
+    })
   }
 
   setSelectedPlant(item) {
@@ -88,24 +90,33 @@ export default class AddPlantScreen extends React.Component {
         name: item.name,
         description: item.description,
         imageURL: item.imageURL,
-        minHumidity: item.minHumidity
+        minHumidity: item.minHumidity,
       },
       isVisibleModal: true,
-    });
+    })
   }
 
-  renderModal = () =>(
+  renderModal = () => (
     <View>
       <View style={styles.descriptionInfo}>
-        <Image style={styles.imageThumbnail} source={{uri: this.state.selectedPlant.imageURL}} />
+        <Image style={styles.imageThumbnail} source={{ uri: this.state.selectedPlant.imageURL }} />
         <View style={styles.statusInfo}>
-          <Text>Name: {this.state.selectedPlant.name}</Text>
-          <Text>Minimum Humidity: {this.state.selectedPlant.minHumidity}</Text>
+          <Text>
+Name:
+            {this.state.selectedPlant.name}
+          </Text>
+          <Text>
+Minimum Humidity:
+            {this.state.selectedPlant.minHumidity}
+          </Text>
         </View>
       </View>
-      <Text>Description: {this.state.selectedPlant.description}</Text>
+      <Text>
+Description:
+        {this.state.selectedPlant.description}
+      </Text>
       <Text>Fill the form and press ADD to create a new pot</Text>
-      
+
       <View style={styles.inputForm}>
         <Text>Pot Name: </Text>
         <TextInput
@@ -139,12 +150,12 @@ export default class AddPlantScreen extends React.Component {
           }}
         />
       </View>
-      
+
       <View style={styles.buttonLayout}>
         <Button
           style={{ padding: 12, margin: 16 }}
           onPress={() => {
-           this.onAddPlantPressed();
+           this.onAddPlantPressed()
           }}
           title="Add"
           color={colors.DODGER_BLUE}
@@ -152,7 +163,7 @@ export default class AddPlantScreen extends React.Component {
         <Button
           style={{ padding: 12, margin: 16 }}
           onPress={() => {
-            this.onCancelPressed();
+            this.onCancelPressed()
           }}
           title="Cancel"
           color={colors.DODGER_BLUE}
@@ -168,19 +179,19 @@ export default class AddPlantScreen extends React.Component {
 
   ) ;
 
-  requestPlantList= async () => { 
+  requestPlantList= async () => {
     fetch(`${strings.LOCALAPI}/plant`, {
- 
+
        method: 'GET',
      })
        .then(response => response.json())
-       .then((response) =>  {
+       .then((response) => {
          console.log(response)
-         this.setState({items: response})
+         this.setState({ items: response })
        })
        .catch((error) => {
-         alert(error);
-       });  
+         alert(error)
+       })
    };
 
   render() {
@@ -191,30 +202,31 @@ export default class AddPlantScreen extends React.Component {
           extraData={this.state.refresh}
           renderItem={({ item }) => (
             <View>
-              <View style={styles.descriptionInfo}> 
+              <View style={styles.descriptionInfo}>
                 <TouchableHighlight
                   onPress={() => {
-                    this.setSelectedPlant(item);
-                  }}>
-                  <Image style={styles.imageThumbnail} source={{uri: item.imageURL}} />
+                    this.setSelectedPlant(item)
+                  }}
+                >
+                  <Image style={styles.imageThumbnail} source={{ uri: item.imageURL }} />
                 </TouchableHighlight>
-                  <Text style={styles.paragraph}>{item.name}</Text>
+                <Text style={styles.paragraph}>{item.name}</Text>
               </View>
-              
+
             </View>
           )}
           keyExtractor={item => item.name}
-          ItemSeparatorComponent={  ()=>(
+          ItemSeparatorComponent={() => (
             <View
               style={{
                 height: 1,
-                width: "86%",
-                backgroundColor: "#CED0CE",
+                width: '86%',
+                backgroundColor: '#CED0CE',
                 alignSelf: 'center',
               }}
             />
           )}
-          ListFooterComponent={ ()=>(
+          ListFooterComponent={() => (
             <View
               style={{
                 height: 90,
@@ -225,7 +237,7 @@ export default class AddPlantScreen extends React.Component {
           )}
         />
         <View>
-          <Modal 
+          <Modal
             visible={this.state.isVisibleModal}
             onRequestClose={() => {
               this.setState({ isVisibleModal: false })
@@ -235,8 +247,8 @@ export default class AddPlantScreen extends React.Component {
           </Modal>
         </View>
       </View>
-      
-    );
+
+    )
   }
 }
 
@@ -250,22 +262,22 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     borderColor: 'rgba(0, 0, 0, 0.1)',
   },
-  buttonLayout:{
+  buttonLayout: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    flex:1,
+    flex: 1,
     padding: 12,
     margin: 16,
 
   },
   container: {
     justifyContent: 'center',
-    flex: 1,  
+    flex: 1,
     backgroundColor: colors.WHITE,
   },
 
-  descriptionInfo:{
+  descriptionInfo: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -295,4 +307,3 @@ const styles = StyleSheet.create({
 
   },
 })
-

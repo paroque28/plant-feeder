@@ -1,9 +1,11 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { Button, Dimensions, StyleSheet, TextInput, Text, View } from 'react-native';
-import { LineChart } from 'react-native-chart-kit';
-import colors from '../../config/colors';
-import strings from '../../config/strings';
+import {
+ Button, Dimensions, StyleSheet, TextInput, Text, View,
+} from 'react-native'
+import { LineChart } from 'react-native-chart-kit'
+import colors from '../../config/colors'
+import strings from '../../config/strings'
 
 export default class StatsScreen extends React.Component {
   static navigationOptions = {
@@ -17,13 +19,13 @@ export default class StatsScreen extends React.Component {
   };
 
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      dataLuminosity: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
-      dataHumidity: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
-      potName:'',
-      dataType:'',
-    };
+      dataLuminosity: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      dataHumidity: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      potName: '',
+      dataType: '',
+    }
   }
 
   requestHistoryDataHumidity = async () => {
@@ -36,8 +38,8 @@ export default class StatsScreen extends React.Component {
       })
       .catch((error) => {
         this.setState({ dataHumidity: [] })
-        alert(error);
-      });
+        alert(error)
+      })
   };
 
   requestHistoryDataLuminosity = async () => {
@@ -50,8 +52,8 @@ export default class StatsScreen extends React.Component {
       })
       .catch((error) => {
         this.setState({ dataLuminosity: [] })
-        alert(error);
-      });
+        alert(error)
+      })
   };
 
   render() {
@@ -63,11 +65,11 @@ export default class StatsScreen extends React.Component {
             labels: ['-10h', '-9h', '-8h', '-7h', '-6h', '-5h', '-4h', '-3h', '-2h', '-1h'],
             datasets: [{
               data: this.state.dataHumidity,
-            }]
+            }],
           }}
           width={Dimensions.get('window').width} // from react-native
           height={200}
-          yAxisLabel={'%'}
+          yAxisLabel="%"
           chartConfig={{
             backgroundColor: '#42E80C',
             backgroundGradientFrom: '#0CC445',
@@ -75,13 +77,13 @@ export default class StatsScreen extends React.Component {
             decimalPlaces: 2, // optional, defaults to 2dp
             color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
             style: {
-              borderRadius: 16
-            }
+              borderRadius: 16,
+            },
           }}
 
           style={{
             marginVertical: 8,
-            borderRadius: 16
+            borderRadius: 16,
           }}
         />
 
@@ -91,11 +93,11 @@ export default class StatsScreen extends React.Component {
             labels: ['-10h', '-9h', '-8h', '-7h', '-6h', '-5h', '-4h', '-3h', '-2h', '-1h'],
             datasets: [{
               data: this.state.dataLuminosity,
-            }]
+            }],
           }}
           width={Dimensions.get('window').width} // from react-native
           height={200}
-          yAxisLabel={'lux'}
+          yAxisLabel="lux"
           chartConfig={{
             backgroundColor: '#FFF34D',
             backgroundGradientFrom: '#D3E83A',
@@ -103,13 +105,13 @@ export default class StatsScreen extends React.Component {
             decimalPlaces: 2, // optional, defaults to 2dp
             color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
             style: {
-              borderRadius: 16
-            }
+              borderRadius: 16,
+            },
           }}
 
           style={{
             marginVertical: 8,
-            borderRadius: 16
+            borderRadius: 16,
           }}
         />
 
@@ -119,7 +121,6 @@ export default class StatsScreen extends React.Component {
             value={this.state.potName}
             onChangeText={(potName) => {
               this.setState({ potName })
-
             }}
           />
 
@@ -127,8 +128,8 @@ export default class StatsScreen extends React.Component {
           <Button
             style={{ padding: 12, margin: 16 }}
             onPress={() => {
-              this.requestHistoryDataHumidity();
-              this.requestHistoryDataLuminosity();
+              this.requestHistoryDataHumidity()
+              this.requestHistoryDataLuminosity()
             }}
             title="Generate"
             color={colors.DODGER_BLUE}
@@ -136,7 +137,7 @@ export default class StatsScreen extends React.Component {
         </View>
 
       </View>
-    );
+    )
   }
 }
 
@@ -162,4 +163,4 @@ const styles = StyleSheet.create({
     resizeMode: 'stretch',
     flexDirection: 'column',
   },
-});
+})
