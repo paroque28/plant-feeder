@@ -27,9 +27,9 @@ export default class SettingsScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
+    backgroundColor: colors.WHITE,
     flex: 1,
+    justifyContent: 'center',
     paddingTop: 30,
-    backgroundColor: colors.TORCH_RED,
   },
 })

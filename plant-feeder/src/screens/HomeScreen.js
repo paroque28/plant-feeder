@@ -46,10 +46,10 @@ export default class HomeScreen extends React.Component {
           renderItem={({ item }) => (
             <View
               style={{
+                alignItems: 'center',
                 flex: 1,
                 flexDirection: 'column',
                 margin: 1,
-                alignItems: 'center',
               }}
             >
               <TouchableHighlight
@@ -72,16 +72,16 @@ export default class HomeScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
-    flex: 1,
     backgroundColor: colors.WHITE,
+    flex: 1,
+    justifyContent: 'center',
   },
 
   imageThumbnail: {
-    justifyContent: 'center',
     alignItems: 'center',
-    resizeMode: 'stretch',
     height: 150,
+    justifyContent: 'center',
+    resizeMode: 'stretch',
     width: 150,
   },
 })

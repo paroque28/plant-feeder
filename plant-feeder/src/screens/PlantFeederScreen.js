@@ -112,10 +112,10 @@ humidity:
           ItemSeparatorComponent={() => (
             <View
               style={{
+                alignSelf: 'center',
+                backgroundColor: '#CED0CE',
                 height: 1,
                 width: '86%',
-                backgroundColor: '#CED0CE',
-                alignSelf: 'center',
               }}
             />
           )}
@@ -136,44 +136,45 @@ humidity:
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
-    flex: 1,
     backgroundColor: colors.WHITE,
+    flex: 1,
+    justifyContent: 'center',
   },
 
   descriptionInfo: {
-    flexDirection: 'row',
     alignItems: 'center',
+    flexDirection: 'row',
     justifyContent: 'center',
-    padding: 12,
     margin: 16,
+    padding: 12,
 
   },
 
   statusInfo: {
+    alignItems: 'center',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center',
-    padding: 12,
     margin: 16,
+    padding: 12,
 
   },
 
   buttonLayout: {
-    flexDirection: 'row',
-    justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
-    padding: 12,
+    flexDirection: 'row',
+    justifyContent: 'center',
     margin: 16,
+    padding: 12,
 
   },
 
   imageThumbnail: {
-    justifyContent: 'center',
     alignItems: 'center',
-    resizeMode: 'stretch',
     height: 150,
+    justifyContent: 'center',
+    resizeMode: 'stretch',
     width: 150,
+
   },
 })

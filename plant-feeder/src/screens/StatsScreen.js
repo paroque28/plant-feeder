@@ -21,8 +21,8 @@ export default class StatsScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      dataLuminosity: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       dataHumidity: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      dataLuminosity: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       potName: '',
       potNames:[],
     }
@@ -89,8 +89,8 @@ export default class StatsScreen extends React.Component {
             backgroundColor: '#42E80C',
             backgroundGradientFrom: '#0CC445',
             backgroundGradientTo: '#0DFD9F',
-            decimalPlaces: 2, // optional, defaults to 2dp
             color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            decimalPlaces: 2, // optional, defaults to 2dp
             style: {
               borderRadius: 16,
             },
@@ -117,8 +117,8 @@ export default class StatsScreen extends React.Component {
             backgroundColor: '#FFF34D',
             backgroundGradientFrom: '#D3E83A',
             backgroundGradientTo: '#A6FF40',
-            decimalPlaces: 2, // optional, defaults to 2dp
             color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            decimalPlaces: 2, // optional, defaults to 2dp
             style: {
               borderRadius: 16,
             },
@@ -158,24 +158,24 @@ export default class StatsScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
-    flex: 1,
-    paddingTop: 30,
     backgroundColor: colors.WHITE,
+    flex: 1,
     flexDirection: 'column',
+    justifyContent: 'center',
+    paddingTop: 30,
   },
 
   imageThumbnail: {
-    justifyContent: 'center',
     alignItems: 'center',
-    resizeMode: 'stretch',
     height: 150,
+    justifyContent: 'center',
+    resizeMode: 'stretch',
     width: 150,
   },
   inputForm: {
-    justifyContent: 'center',
     alignItems: 'center',
-    resizeMode: 'stretch',
     flexDirection: 'column',
+    justifyContent: 'center',
+    resizeMode: 'stretch',
   },
 })

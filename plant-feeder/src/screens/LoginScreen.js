@@ -15,9 +15,9 @@ class LoginScreen extends React.Component {
 
   state = {
     email: '',
-    password: '',
     isLoading: false,
     message: '',
+    password: '',
   };
 
   handleEmailChange = (email) => {
@@ -91,17 +91,17 @@ class LoginScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: colors.WHITE,
     alignItems: 'center',
+    backgroundColor: colors.WHITE,
+    flex: 1,
     justifyContent: 'space-between',
   },
   logo: {
+    alignSelf: 'center',
     flex: 1,
-    width: '45%',
     height: '45%',
     resizeMode: 'contain',
-    alignSelf: 'center',
+    width: '45%',
   },
   form: {
     flex: 1,
@@ -109,11 +109,11 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   description: {
-    marginBottom: 20,
+    color: '#656500',
     fontSize: 18,
     fontWeight: 'bold',
+    marginBottom: 20,
     textAlign: 'center',
-    color: '#656500',
   },
 })
 

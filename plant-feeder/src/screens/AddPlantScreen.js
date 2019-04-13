@@ -31,14 +31,14 @@ export default class AddPlantScreen extends React.Component {
       isVisibleModal: false,
       items: [],
       selectedPlant: {
-        name: '',
         description: '',
-        minHumidity: '',
-        imageURL: '',
-        potName: '',
         humditySensor: '',
+        imageURL: '',
         luminositySensor: '',
+        minHumidity: '',
         motorSensor: '',
+        name: '',
+        potName: '',
       },
     }
   }
@@ -50,12 +50,12 @@ export default class AddPlantScreen extends React.Component {
 
   onAddPlantPressed = async () => {
     const obj = {
- name: this.state.selectedPlant.potName,
-                  plantName: this.state.selectedPlant.name,
-                  humiditySensor: this.state.selectedPlant.humditySensor,
-                  luminositySensor: this.state.selectedPlant.luminositySensor,
-                  motorSensor: this.state.selectedPlant.motorSensor,
-                }
+      humiditySensor: this.state.selectedPlant.humditySensor,
+      luminositySensor: this.state.selectedPlant.luminositySensor,
+      motorSensor: this.state.selectedPlant.motorSensor,
+      name: this.state.selectedPlant.potName,
+      plantName: this.state.selectedPlant.name,
+    }
     fetch(`${strings.LOCALAPI}/pot`, {
       method: 'POST',
       headers: {
@@ -81,14 +81,14 @@ export default class AddPlantScreen extends React.Component {
   onCancelPressed() {
     this.setState({
       selectedPlant: {
-        name: this.state.selectedPlant.name,
         description: this.state.selectedPlant.description,
-        imageURL: this.state.selectedPlant.imageURL,
-        minHumidity: this.state.selectedPlant.minHumidity,
-        potName: '',
         humditySensor: '',
+        imageURL: this.state.selectedPlant.imageURL,
         luminositySensor: '',
+        minHumidity: this.state.selectedPlant.minHumidity,
         motorSensor: '',
+        name: this.state.selectedPlant.name,
+        potName: '',
       },
     })
   }
@@ -96,10 +96,10 @@ export default class AddPlantScreen extends React.Component {
   setSelectedPlant(item) {
     this.setState({
       selectedPlant: {
-        name: item.name,
         description: item.description,
         imageURL: item.imageURL,
         minHumidity: item.minHumidity,
+        name: item.name,
       },
       isVisibleModal: true,
     })
