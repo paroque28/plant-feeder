@@ -41,9 +41,8 @@ function createPotRoutes(server) {
           Pot.find(params, 'name').lean().exec((err, pots) => {
             if (err) reject(Boom.badRequest(err))
             if (pots == null) reject(Boom.badRequest('Couldn\'t find any pot!'))
-            let result = []
-            for (let pot of pots)
-            {
+            const result = []
+            for (const pot of pots) {
               result.push(pot.name)
             }
             resolve(result)

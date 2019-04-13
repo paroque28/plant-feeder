@@ -24,7 +24,7 @@ export default class StatsScreen extends React.Component {
       dataHumidity: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       dataLuminosity: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       potName: '',
-      potNames:[],
+      potNames: [],
     }
   }
 
@@ -131,13 +131,15 @@ export default class StatsScreen extends React.Component {
         />
 
         <View style={styles.inputForm}>
-          <Text>Pot Name: </Text>
-          <TextInput
-            value={this.state.potName}
-            onChangeText={(potName) => {
-              this.setState({ potName })
-            }}
-          />
+          <Text style={styles.label}>Pot Name: </Text>
+          <Picker
+            selectedValue={this.state.potName}
+            onValueChange={(potName) => {
+                       this.setState({ potName })
+                      }}
+          >
+            {this.state.potNames}
+          </Picker>
 
 
           <Button
@@ -165,13 +167,10 @@ const styles = StyleSheet.create({
     paddingTop: 30,
   },
 
-  imageThumbnail: {
-    alignItems: 'center',
-    height: 150,
-    justifyContent: 'center',
-    resizeMode: 'stretch',
-    width: 150,
+  label: {
+    fontWeight: 'bold',
   },
+
   inputForm: {
     alignItems: 'center',
     flexDirection: 'column',
