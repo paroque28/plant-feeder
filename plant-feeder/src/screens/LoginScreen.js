@@ -1,10 +1,12 @@
-import * as React from 'react';
-import { Image, StyleSheet, View, Text } from 'react-native';
-import Button from '../../components/Button';
-import FormTextInput from '../../components/FormTextInput';
-import imageLogo from '../../assets/images/icon.png';
-import colors from '../../config/colors';
-import strings from '../../config/strings';
+import * as React from 'react'
+import {
+ Image, StyleSheet, View, Text 
+} from 'react-native'
+import Button from '../../components/Button'
+import FormTextInput from '../../components/FormTextInput'
+import imageLogo from '../../assets/images/icon.png'
+import colors from '../../config/colors'
+import strings from '../../config/strings'
 
 class LoginScreen extends React.Component {
   static navigationOptions = {
@@ -18,51 +20,51 @@ class LoginScreen extends React.Component {
     message: '',
   };
 
-  handleEmailChange = email => {
-    this.setState({ email });
+  handleEmailChange = (email) => {
+    this.setState({ email })
   };
 
-  handlePasswordChange = password => {
-    this.setState({ password });
+  handlePasswordChange = (password) => {
+    this.setState({ password })
   };
 
   verifyCredentials = async () => {
-    let obj = { username: this.state.email, password: this.state.password };   
-    fetch('http://192.168.0.13:80/api/v1/login', {
+    const obj = { username: this.state.email, password: this.state.password }   
+    fetch(`${strings.LOCALAPI}/login`, {
       method: 'POST',
       body: JSON.stringify(obj),
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json',
       },
-      credentials: "same-origin"
+      credentials: 'same-origin',
     })
-      .then((response) =>  {
-        if (response.ok){
-          this.props.navigation.navigate('Home');
-        }else{
+      .then((response) => {
+        if (response.ok) {
+          this.props.navigation.navigate('Home')
+        } else {
           this.setState({
             isLoading: false,
             message: 'Error: Invalid Username or Password',
-          });
+          })
         }
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error)
         this.setState({
           isLoading: false,
-          message: 'Error: Invalid Username or Password'
-        });
-      });  
+          message: 'Error: Invalid Username or Password',
+        })
+      })  
   };
 
   handleLoginPress = () => {
-    this.verifyCredentials();
+    this.verifyCredentials()
   };
 
   render() {
     const spinner = this.state.isLoading ? (
       <ActivityIndicator size="large" />
-    ) : null;
+    ) : null
 
     return (
       <View style={styles.container}>
@@ -84,7 +86,7 @@ class LoginScreen extends React.Component {
           <Text style={styles.description}>{this.state.message}</Text>
         </View>
       </View>
-    );
+    )
   }
 }
 
@@ -109,11 +111,11 @@ const styles = StyleSheet.create({
   },
   description: {
     marginBottom: 20,
-    fontSize:  18,
+    fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#656500'
+    color: '#656500',
   },
-});
+})
 
-export default LoginScreen;
+export default LoginScreen

@@ -3,6 +3,7 @@ import {
  View, StyleSheet, Image, Button, FlatList, Text 
 } from 'react-native'
 import colors from '../../config/colors'
+import strings from '../../config/strings'
 
 export default class PlantFeederScreen extends React.Component {
   static navigationOptions = {
@@ -29,7 +30,7 @@ export default class PlantFeederScreen extends React.Component {
   }
 
   onWaterButtonPressed = async (item) => { 
-    fetch(`http://192.168.0.13:80/api/v1/water-pot?name=${item.name}`, {
+    fetch(`${strings.LOCALAPI}/water-pot?name=${item.name}`, {
       method: 'POST',
     })
       .then((response) =>  {
@@ -51,7 +52,7 @@ export default class PlantFeederScreen extends React.Component {
   };
   
   requestPotList= async () => { 
-    fetch('http://192.168.0.13:80/api/v1/pot', {
+    fetch(`${strings.LOCALAPI}/pot`, {
  
        method: 'GET',
      })

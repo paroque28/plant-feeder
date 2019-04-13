@@ -1,6 +1,7 @@
 import * as React from 'react';
-import {Button, Image, FlatList, StyleSheet, Text, TouchableHighlight, View, Modal, TouchableOpacity } from 'react-native';
+import {Button, Image, FlatList, TextInput, StyleSheet, Text, TouchableHighlight, View, Modal, TouchableOpacity } from 'react-native';
 import colors from '../../config/colors';
+import strings from '../../config/strings'
 
 export default class AddPlantScreen extends React.Component {
   static navigationOptions = {
@@ -23,6 +24,10 @@ export default class AddPlantScreen extends React.Component {
         description: '',
         minHumidity: '',
         imageURL: '',
+        potName: '',
+        humditySensor:'',
+        luminositySensor:'',
+        motorSensor:'',
       }
     };
   }
@@ -31,7 +36,55 @@ export default class AddPlantScreen extends React.Component {
     this.requestPlantList();
   }
 
-   setSelectedPlant(item) {
+
+
+  onAddPlantPressed = async () => {
+    const obj = { name: this.state.selectedPlant.potName,
+                  plantName: this.state.selectedPlant.name,
+                  humiditySensor: this.state.selectedPlant.humditySensor,
+                  luminositySensor: this.state.selectedPlant.luminositySensor,
+                  motorSensor: this.state.selectedPlant.motorSensor, 
+                } 
+    console.log(JSON.stringify(obj))
+    fetch(`${strings.LOCALAPI}/pot`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(obj),
+      credentials: 'same-origin',
+    })
+      .then((response) => {
+        if (response.ok) {
+          this.setState({ isVisibleModal: false });
+          alert('Added successfully');
+        } else {
+          console.log(response)
+          alert('Failed to add pot')
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })  
+  };
+
+  onCancelPressed() {
+    this.setState({
+      selectedPlant: {
+        name: this.state.selectedPlant.name,
+        description: this.state.selectedPlant.description,
+        imageURL: this.state.selectedPlant.imageURL,
+        minHumidity: this.state.selectedPlant.minHumidity,
+        potName: '',
+        humditySensor:'',
+        luminositySensor:'',
+        motorSensor:'',
+      },
+    }); 
+  }
+
+  setSelectedPlant(item) {
     this.setState({
       selectedPlant: {
         name: item.name,
@@ -41,7 +94,6 @@ export default class AddPlantScreen extends React.Component {
       },
       isVisibleModal: true,
     });
-
   }
 
   renderModal = () =>(
@@ -54,12 +106,47 @@ export default class AddPlantScreen extends React.Component {
         </View>
       </View>
       <Text>Description: {this.state.selectedPlant.description}</Text>
-      <Text>Do you want to add this to a pot?</Text>
+      <Text>Fill the form and press ADD to create a new pot</Text>
+      
+      <View style={styles.inputForm}>
+        <Text>Pot Name: </Text>
+        <TextInput
+          value={this.state.selectedPlant.potName}
+          onChangeText={(potName) => {
+            this.state.selectedPlant.potName = potName
+          }}
+        />
+
+        <Text>Humidity Sensor: </Text>
+        <TextInput
+          value={this.state.selectedPlant.humditySensor}
+          onChangeText={(humditySensor) => {
+            this.state.selectedPlant.humditySensor = humditySensor
+          }}
+        />
+
+        <Text>Luminosity Sensor: </Text>
+        <TextInput
+          value={this.state.selectedPlant.luminositySensor}
+          onChangeText={(luminositySensor) => {
+            this.state.selectedPlant.luminositySensor = luminositySensor
+          }}
+        />
+
+        <Text>Motor Sensor: </Text>
+        <TextInput
+          value={this.state.selectedPlant.motorSensor}
+          onChangeText={(motorSensor) => {
+            this.state.selectedPlant.motorSensor = motorSensor
+          }}
+        />
+      </View>
+      
       <View style={styles.buttonLayout}>
         <Button
           style={{ padding: 12, margin: 16 }}
           onPress={() => {
-           //TODO
+           this.onAddPlantPressed();
           }}
           title="Add"
           color={colors.DODGER_BLUE}
@@ -67,7 +154,7 @@ export default class AddPlantScreen extends React.Component {
         <Button
           style={{ padding: 12, margin: 16 }}
           onPress={() => {
-            //TODO
+            this.onCancelPressed();
           }}
           title="Cancel"
           color={colors.DODGER_BLUE}
@@ -84,7 +171,7 @@ export default class AddPlantScreen extends React.Component {
   ) ;
 
   requestPlantList= async () => { 
-    fetch('http://192.168.0.13:80/api/v1/plant', {
+    fetch(`${strings.LOCALAPI}/plant`, {
  
        method: 'GET',
      })
@@ -194,6 +281,12 @@ const styles = StyleSheet.create({
     resizeMode: 'stretch',
     height: 150,
     width: 150,
+  },
+  inputForm: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    resizeMode: 'stretch',
+    flexDirection: 'column',
   },
   statusInfo: {
     flexDirection: 'column',

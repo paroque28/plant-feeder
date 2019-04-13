@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
 
+
 import colors from '../../config/colors';
 
 export default class SettingsScreen extends React.Component {
