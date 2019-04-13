@@ -24,7 +24,7 @@ export default class StatsScreen extends React.Component {
       dataHumidity: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       dataLuminosity: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       potName: '',
-      potNames: [],
+      potNames: ['no plants'],
     }
     // Fetch Pot Names
     fetch(`${strings.LOCALAPI}/potname`, {
@@ -36,8 +36,7 @@ export default class StatsScreen extends React.Component {
       })
       .catch((error) => {
         alert(error)
-      })
-  }
+      })  }
 
   requestHistoryDataHumidity = async () => {
     fetch(`${strings.LOCALAPI}/pot-history?potName=${this.state.potName}&type=humidity`, {
@@ -82,6 +81,9 @@ export default class StatsScreen extends React.Component {
   };
 
   render() {
+    let serviceItems = this.state.potNames.map( (s, i) => {
+      return <Picker.Item key={i} value={s} label={s} />
+  });
     return (
       <View style={styles.container}>
         <Text> Humidity </Text>
@@ -148,7 +150,7 @@ export default class StatsScreen extends React.Component {
                        this.setState({ potName })
                       }}
           >
-            {this.state.potNames}
+            {serviceItems}
           </Picker>
 
 
