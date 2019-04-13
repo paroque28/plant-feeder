@@ -2,7 +2,6 @@ import crypto from 'crypto'
 import Boom from 'boom'
 import User from '../../../models/user'
 
-
 function createUserRoutes(server) {
   server.route([
     {
@@ -29,13 +28,17 @@ function createUserRoutes(server) {
         return new Promise(
           (resolve, reject) => {
           User.findOne({ username }, 'md5Password', (err, user) => {
-            if (err) throw Boom.badRequest(err)
-            if (user == null) throw Boom.badRequest('Invalid username or password')
-            if (user.md5Password === hash) {
-              resolve('Authorized')
-            } else {
-              reject(Boom.unauthorized('Invalid username or password'))
+            if (err) reject(Boom.badRequest(err))
+            if (user == null) {
+              reject(Boom.badRequest('Invalid username or password'))
             }
+            else{
+              if (user.md5Password === hash) {
+                resolve('Authorized')
+              } else {
+                reject(Boom.unauthorized('Invalid username or password'))
+              }
+           }
           })
         },
 )

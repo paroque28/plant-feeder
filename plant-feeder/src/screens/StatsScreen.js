@@ -36,7 +36,8 @@ export default class StatsScreen extends React.Component {
       })
       .catch((error) => {
         alert(error)
-      })  }
+      })
+}
 
   requestHistoryDataHumidity = async () => {
     fetch(`${strings.LOCALAPI}/pot-history?potName=${this.state.potName}&type=humidity`, {
@@ -85,9 +86,7 @@ export default class StatsScreen extends React.Component {
   }
 
   render() {
-    const serviceItems = this.state.potNames.map( (s, i) => {
-      return <Picker.Item key={i} value={s} label={s} />
-  });
+    const serviceItems = this.state.potNames.map((s, i) => <Picker.Item key={i} value={s} label={s} />)
     return (
       <View style={styles.container}>
         <Text style={styles.label}> Humidity </Text>
@@ -150,7 +149,7 @@ export default class StatsScreen extends React.Component {
           <Text style={styles.label}>Pot Name: </Text>
           <Picker
             selectedValue={this.state.potName}
-            style={{height: 50, width: 200}}
+            style={{ height: 50, width: 200 }}
             onValueChange={(potName) => {
                        this.setState({ potName })
                       }}
